@@ -1,12 +1,15 @@
 topic <- tolower("animal behavior and cognition")
 
-# Store the Google Sheets ID in the GSHEET_ID environment variable
-gsheet_id <- Sys.getenv("GSHEET_ID")
-
 library(httr)
 library(glue)
 library(dplyr)
 library(googlesheets4)
+
+# Store the Google Sheets ID in the GSHEET_ID environment variable
+gsheet_id <- Sys.getenv("GSHEET_ID")
+# Google Sheets auth. See https://gargle.r-lib.org/articles/get-api-credentials.html#service-account-token-1
+json <- gargle:::secret_read("procButils", "procButils.json")
+gs4_auth(path = rawToChar(json))
 
 today <- Sys.Date()
 current_month <- format(today, "%B %Y")
@@ -56,7 +59,9 @@ ready_tocopy <- preprints_topic %>%
 gsheet <- gs4_get(gsheet_id)
 
 if (!current_month %in% sheet_names(gsheet)) {
-  sheet_add(gsheet, current_month)
+  gsheet %>%
+    sheet_add(current_month) %>%
+    sheet_append(list2DF(as.list(colnames(ready_tocopy))), sheet = current_month)
 }
 
 gsheet %>%

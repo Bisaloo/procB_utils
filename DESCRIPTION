@@ -1,4 +1,4 @@
-Package: procB_utils
+Package: procButils
 Title: What the Package Does (One Line, Title Case)
 Version: 0.0.0.9000
 Authors@R: 
@@ -12,7 +12,8 @@ Imports:
   httr,
   glue,
   dplyr,
-  googlesheets4
+  googlesheets4,
+  sodium
 License: GPL-3
 Config/testthat/edition: 3
 Encoding: UTF-8

@@ -9,6 +9,7 @@ jobs:
     runs-on: macOS-latest
     env:
       GSHEET_ID: ${{ secrets.GSHEET_ID }}
+      PROCBUTILS_PASSWORD: ${{ secrets.PROCBUTILS_PASSWORD }}
     steps:
       - uses: actions/checkout@v2
 
