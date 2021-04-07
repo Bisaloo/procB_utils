@@ -48,7 +48,7 @@ preprints_topic <- preprints %>%
 ready_tocopy <- preprints_topic %>%
   transmute(
     Topic = tools::toTitleCase(category),
-    `Editorial Team` = "",
+    `Editorial Team Member` = "",
     `Last name (only!) Corresponding Author` = as.person(author_corresponding)$family,
     `Title of paper` = title,
     `Email of corresponding` = "",
