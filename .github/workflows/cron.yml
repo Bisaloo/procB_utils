@@ -8,7 +8,7 @@ jobs:
   datacron:
     runs-on: macOS-latest
     env:
-      GITHUB_PAT: ${{ secrets.GSHEET_ID }}
+      GSHEET_ID: ${{ secrets.GSHEET_ID }}
     steps:
       - uses: actions/checkout@v2
 
@@ -21,7 +21,7 @@ jobs:
           writeLines(sprintf("R-%i.%i", getRversion()$major, getRversion()$minor), ".github/R-version")
         shell: Rscript {0}
 
-        
+
       - name: Cache R packages
         uses: actions/cache@v2
         with:
